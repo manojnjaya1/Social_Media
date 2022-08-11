@@ -1,6 +1,7 @@
 const express=require("express");
 const router=express.Router();
 const passport=require("passport");
+
 const userController=require("../controllers/user_controller");
 
 router.get('/profile/:id',passport.checkAuthentication,userController.profile);
@@ -15,5 +16,9 @@ router.get('/sign-in',userController.signIn);
     'local',
     {failureRedirect:"/users/sign-in"}
  ),userController.createSession)
+
+
 router.get('/sign-out',userController.destroySession);
+
+
 module.exports=router;
